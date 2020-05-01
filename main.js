@@ -3,13 +3,20 @@ var sketchProc = function(processingInstance) {
         size(600, 600,P3D); 
         frameRate(30);
         
-        var lightColor=color(163, 241, 255);//The color of the light
+        /*
+    Controls:
+    UP and DOWN arrow keys to move forward and backward
+    LEFT and RIGHT arrow keys to move left and right
+    ENTER or SPACE to jump
+    . and / to orbit
+*/
+var lightColor=color(163, 241, 255);//The color of the light
 
-        var bkgColor=color(13, 255, 0);//The color of the background
+var bkgColor=color(13, 255, 0);//The color of the background
 
-        var bodyColor=color(255, 102, 0);//The color of your body
+var bodyColor=color(255, 102, 0);//The color of your body
 
-        var otherColor=color(30, 0, 255);//the color of your nose and tail
+var otherColor=color(30, 0, 255);//the color of your nose and tail
 
 
 
@@ -72,22 +79,22 @@ draw= function() {
     background(255, 0, 0);
     this[["KAInfiniteLoopCount"]]=-Infinity;
     
-    beginDraw();
+    a.beginDraw();
     
-    pushMatrix();
-    directionalLight(red(lightColor),green(lightColor),blue(lightColor),1,1,0);
-    ambientLight(red(lightColor)-50,green(lightColor)-50,blue(lightColor)-50);
-    background(bkgColor);
-    shininess(1);
-    angleMode="degrees";
+    a.pushMatrix();
+    a.directionalLight(red(lightColor),green(lightColor),blue(lightColor),1,1,0);
+    a.ambientLight(red(lightColor)-50,green(lightColor)-50,blue(lightColor)-50);
+    a.background(bkgColor);
+    a.shininess(1);
+    a.angleMode="degrees";
     //a.rotateY(r);
     //a.translate(x,y,z);
-    fill(255);
+    a.fill(255);
     for(var i=0;i<world.length;i++){
-                    pushMatrix();
-                    translate(world[i][0]*20,world[i][1]*20,world[i][2]*20);
-                    box(20);
-                    popMatrix();
+                    a.pushMatrix();
+                    a.translate(world[i][0]*20,world[i][1]*20,world[i][2]*20);
+                    a.box(20);
+                    a.popMatrix();
                     if(collide({x:x-2.5,y:y-2.5,z:z,w:5,h:6,d:5},{x:world[i][0]*20-10,y:world[i][1]*20-10,z:world[i][2]*20-10,w:20,h:21,d:20})){
                         //a.println("yes");
                         var bl={x:world[i][0]*20,y:world[i][1]*20,z:world[i][2]*20,w:20,h:20,d:20};
@@ -119,22 +126,23 @@ draw= function() {
                         canjump=true;
                     }
     }
-    noLights();
-    pushMatrix();
-    fill(bodyColor);
-    translate(x,y,z);
+    a.noLights();
+    a.pushMatrix();
+    a.fill(bodyColor);
+    a.translate(x,y,z);
     //a.rotateY(90);
-    box(5);
-    translate(0,0,-3);
-    fill(otherColor);
-    box(2);
-    translate(0,-1,7);
-    box(1,1,4);
-    popMatrix();
-    popMatrix();
-    endDraw();
-    camera(x+cos(r)*(60*height/400),y-20,z+sin(r)*(60*height/400),x,y,z,0,1,0);
+    a.box(5);
+    a.translate(0,0,-3);
+    a.fill(otherColor);
+    a.box(2);
+    a.translate(0,-1,7);
+    a.box(1,1,4);
+    a.popMatrix();
+    a.popMatrix();
+    a.endDraw();
+    a.camera(x+cos(r)*(60*height/400),y-20,z+sin(r)*(60*height/400),x,y,z,0,1,0);
     
+    image(a,0,0);
     //image(b,200,0);
     if(keys[UP]){
         z-=2;
@@ -183,6 +191,4 @@ keyPressed=function(){
 keyReleased=function(){
     keys[keyCode]=false;
 };
-        
-
     }};
