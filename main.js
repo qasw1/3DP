@@ -141,7 +141,7 @@ draw= function() {
     a.popMatrix();
     a.endDraw();
     a.camera(x+cos(r)*(60*height/400),y-20,z+sin(r)*(60*height/400),x,y,z,0,1,0);
-    
+    a.get();
     image(a,0,0);
     //image(b,200,0);
     if(keys[UP]){
