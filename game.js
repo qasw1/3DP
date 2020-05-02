@@ -56,15 +56,15 @@ var sketchProc = function(processingInstance) {
                 for(var j=0;j<grid[i].length;j++){
                     for(var k=0;k<grid[i][j].length;k++){
                         if(grid[i][j][k]===1){
-                        world.push([j*20,(grid.length-1-i)*20,k*20,false]);
+                        world.push([k*20,(grid.length-1-i)*20,j*20,false]);
                         
                         
                         }
                         else if(grid[i][j][k]===2){
-                            world.push([j*20,(grid.length-1-i)*20,k*20,true]);
+                            world.push([k*20,(grid.length-1-i)*20,j*20,true]);
                         }
                         else if(grid[i][j][k]===3){
-                            world.push([j*20,(grid.length-1-i)*20,k*20,"prtl"]);
+                            world.push([k*20,(grid.length-1-i)*20,j*20,"prtl"]);
                         }
                     }
                 }
@@ -95,6 +95,10 @@ var sketchProc = function(processingInstance) {
                     if(world[i][3]===true){
                         x=0,y=-10,z=0,r=0,jump=0,canjump=true;
                     }
+                      if(world[i][3]==="prtl"){
+                           level++;
+                           strat=true;
+                      }
             
 if(pl.y>=bl.y&&pl.y<=bl.y+bl.h){
     if(z<=(bl.z+(bl.d/2)+(pl.d/2))&&z>=bl.z+(bl.d/2)-3){
